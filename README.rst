@@ -59,6 +59,14 @@ It is currently maintained by a team of volunteers.
 
 Website: https://scikit-learn.org
 
+**NOTE ON THIS FORK:**
+
+I needed the KDTree in the KNeighborsRegressor class to allow for element indexing with arbitrary indices. In the original 
+implementation, everytime the tree is rebuilt the index of each element is reset in the interval [1,TREE_SIZE], but I need 
+to keep the indices unchanged and unbounded. The new version of KNeighborsRegressor takes a parameter indexed = True/False. When
+indexed is True the constructor expects a duple (indices, X), so the first element is saved as the list of indices for each
+element of the tree, and the second element is the data to build the tree with.
+
 Installation
 ------------
 
